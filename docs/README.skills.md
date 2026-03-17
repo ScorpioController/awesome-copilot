@@ -24,6 +24,30 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md#adding-skills) for guidelines on how to
 - Copy the skill folder to your local skills directory
 - Reference skills in your prompts or let the agent discover them automatically
 
+### Skill Usage Map
+
+The full inventory below is the source of truth for every skill. The following map groups the collection by common job-to-be-done so it is easier to find the right starting point:
+
+- **Planning and requirements** - Break down work, produce specs, and create implementation plans. Representative skills: `breakdown-plan`, `breakdown-feature-prd`, `create-specification`, `create-implementation-plan`, `prd`, `create-technical-spike`.
+- **Code generation and scaffolding** - Create starter projects, templates, and generated assets. Representative skills: `create-readme`, `create-agentsmd`, `create-llms`, `create-spring-boot-java-project`, `openapi-to-application-code`, and the language-specific `*-mcp-server-generator` skills.
+- **Review, refactoring, and quality** - Analyze implementations, reduce complexity, and improve maintainability. Representative skills: `refactor`, `review-and-refactor`, `refactor-plan`, `refactor-method-complexity-reduce`, `sql-code-review`, `postgresql-code-review`, `dotnet-design-pattern-review`.
+- **Testing and debugging** - Generate tests, improve coverage, and investigate failures. Representative skills: `playwright-generate-test`, `playwright-explore-website`, `webapp-testing`, `pytest-coverage`, `javascript-typescript-jest`, `java-junit`, `polyglot-test-agent`, `scoutqa-test`.
+- **Cloud, platform, and operations** - Work with deployment platforms, developer tooling, and operational diagnostics. Representative skills: `azure-deployment-preflight`, `azure-resource-visualizer`, `azure-devops-cli`, `publish-to-pages`, `gh-cli`, `github-issues`, `my-issues`, `my-pull-requests`.
+- **Documentation and knowledge capture** - Turn work into durable documents, summaries, and reference material. Representative skills: `documentation-writer`, `create-tldr-page`, `create-architectural-decision-record`, `meeting-minutes`, `repo-story-time`, `create-readme`.
+- **Context, memory, and collaboration** - Prepare the next model or teammate with the context needed to continue. Representative skills: `context-map`, `what-context-needed`, `remember`, `memory-merger`, `copilot-spaces`, `meeting-minutes`.
+
+### Session Handoff Analysis
+
+Yes — the repository already includes skills that support **model session handoff**, but they do it through **structured, durable artifacts** instead of replaying a raw conversation transcript.
+
+- **Best fit: `remember`** - Captures lessons learned into reusable memory instructions with global or workspace scope, making it the strongest option for carrying distilled context into future sessions.
+- **Best fit: `memory-merger`** - Promotes mature lessons from memory files into longer-lived instruction files, which helps convert short-term session learnings into stable guidance for later conversations.
+- **Supporting fit: `context-map`** - Produces a task-focused file map before changes, which is useful as a clean handoff package when another model needs to continue implementation.
+- **Supporting fit: `what-context-needed`** - Helps the next model identify which files it still needs before answering accurately, reducing blind spots during handoff.
+- **Supporting fit: `meeting-minutes` and `copilot-spaces`** - Useful when handoff needs a human-readable summary or a curated knowledge base rather than code-level memory alone.
+
+**Practical conclusion:** if the goal is cross-session continuity, the most effective combination in this repository is **`remember` + `memory-merger`**, optionally paired with **`context-map`** for task-specific file context. There does not appear to be a skill dedicated to transferring a full chat transcript end-to-end; the recommended approach is to persist the distilled context as memory files, instructions, summaries, or context maps before ending the session.
+
 | Name | Description | Bundled Assets |
 | ---- | ----------- | -------------- |
 | [add-educational-comments](../skills/add-educational-comments/SKILL.md) | Add educational comments to the file specified, or prompt asking for file to comment if one is not provided. | None |
