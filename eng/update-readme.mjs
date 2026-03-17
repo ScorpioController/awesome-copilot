@@ -295,9 +295,9 @@ const SKILL_CATEGORY_RULES = [
     patterns: [
       /documentation/,
       /readme/,
-      /llms/,
+      /^create-llms$/,
+      /^update-llms$/,
       /tldr/,
-      /meeting-minutes/,
       /repo-story-time/,
       /comment-code-generate-a-tutorial/,
       /convert-plaintext-to-md/,
@@ -323,6 +323,7 @@ const SKILL_CATEGORY_RULES = [
       /what-context-needed/,
       /copilot-spaces/,
       /first-ask/,
+      /meeting-minutes/,
     ],
   },
   {
@@ -508,11 +509,30 @@ const SKILL_CATEGORY_RULES = [
   },
 ];
 
+// These are the strongest session-handoff skills inside the
+// “上下文、记忆与协作交接” category because they persist distilled context
+// across sessions instead of only describing the current task state.
+// The generator validates this assumption at runtime and warns if a listed
+// folder no longer appears in that category.
+const SESSION_HANDOFF_BEST_FIT_FOLDERS = ["remember", "memory-merger"];
+// Insert a line break after every 8 skills to keep the generated markdown
+// readable without making each category list too vertically verbose.
+const SKILLS_PER_CHUNK = 8;
+
 function groupSkillsByCategory(skillEntries) {
-  const categories = SKILL_CATEGORY_RULES.map((category) => ({
-    ...category,
-    skills: [],
-  }));
+  const categories = [
+    ...SKILL_CATEGORY_RULES.map((category) => ({
+      ...category,
+      skills: [],
+    })),
+    {
+      title: "未归类",
+      description: "暂未归入固定类别的技能。",
+      patterns: [],
+      skills: [],
+    },
+  ];
+  const fallbackCategory = categories[categories.length - 1];
 
   for (const skill of skillEntries) {
     const matchingCategory = categories.find((category) =>
@@ -524,13 +544,10 @@ function groupSkillsByCategory(skillEntries) {
       continue;
     }
 
-    const fallbackCategory = categories.find(
-      (category) => category.title === "开发工具、CLI 与协作平台"
-    );
     fallbackCategory.skills.push(skill);
   }
 
-  return categories;
+  return categories.filter((category) => category.skills.length > 0);
 }
 
 function formatSkillLinks(skills) {
@@ -539,8 +556,8 @@ function formatSkillLinks(skills) {
   );
   const chunks = [];
 
-  for (let i = 0; i < links.length; i += 8) {
-    chunks.push(links.slice(i, i + 8).join("、"));
+  for (let i = 0; i < links.length; i += SKILLS_PER_CHUNK) {
+    chunks.push(links.slice(i, i + SKILLS_PER_CHUNK).join("、"));
   }
 
   return chunks.join("<br />");
@@ -548,16 +565,25 @@ function formatSkillLinks(skills) {
 
 function generateChineseSkillCatalog(skillEntries) {
   const categories = groupSkillsByCategory(skillEntries);
-  const handoffSkills = {
-    bestFit: ["remember", "memory-merger"],
-    supporting: [
-      "context-map",
-      "what-context-needed",
-      "meeting-minutes",
-      "copilot-spaces",
-      "first-ask",
-    ],
-  };
+  const handoffCategory =
+    categories.find((category) => category.title === "上下文、记忆与协作交接")
+      ?.skills ?? [];
+  const handoffSkillMap = new Map(
+    handoffCategory.map((skill) => [skill.folder, skill])
+  );
+  const bestFitSkills = SESSION_HANDOFF_BEST_FIT_FOLDERS.map((folder) => {
+    const skill = handoffSkillMap.get(folder);
+    if (!skill) {
+      console.warn(
+        `Expected handoff skill "${folder}" was not found in the "上下文、记忆与协作交接" category. Verify that the skill exists in skills/ and still matches that category's patterns.`
+      );
+    }
+    return skill;
+  }).filter(Boolean);
+  const bestFitFolders = new Set(bestFitSkills.map((skill) => skill.folder));
+  const supportingSkills = handoffCategory.filter(
+    (skill) => !bestFitFolders.has(skill.folder)
+  );
 
   let content = `### 中文分类技能清单
 
@@ -571,12 +597,8 @@ function generateChineseSkillCatalog(skillEntries) {
     content += `- ${formatSkillLinks(category.skills)}\n\n`;
   });
 
-  const bestFitLinks = handoffSkills.bestFit
-    .map((name) => `[${name}](../skills/${name}/SKILL.md)`)
-    .join("、");
-  const supportingLinks = handoffSkills.supporting
-    .map((name) => `[${name}](../skills/${name}/SKILL.md)`)
-    .join("、");
+  const bestFitLinks = formatSkillLinks(bestFitSkills);
+  const supportingLinks = formatSkillLinks(supportingSkills);
 
   content += `### 模型会话内容交接相关技能
 
