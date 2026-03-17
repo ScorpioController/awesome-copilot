@@ -24,6 +24,95 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md#adding-skills) for guidelines on how to
 - Copy the skill folder to your local skills directory
 - Reference skills in your prompts or let the agent discover them automatically
 
+### 中文分类技能清单
+
+以下按用途对全部 **226** 个技能进行分类，技能名称保留仓库中的原始英文目录名，便于直接在 `skills/` 目录中定位。
+
+#### 1. 规划与需求（27）
+
+用于需求拆解、方案规划、规格编写和实施路线设计。
+
+- [architecture-blueprint-generator](../skills/architecture-blueprint-generator/SKILL.md)、[breakdown-epic-arch](../skills/breakdown-epic-arch/SKILL.md)、[breakdown-epic-pm](../skills/breakdown-epic-pm/SKILL.md)、[breakdown-feature-implementation](../skills/breakdown-feature-implementation/SKILL.md)、[breakdown-feature-prd](../skills/breakdown-feature-prd/SKILL.md)、[breakdown-plan](../skills/breakdown-plan/SKILL.md)、[breakdown-test](../skills/breakdown-test/SKILL.md)、[code-exemplars-blueprint-generator](../skills/code-exemplars-blueprint-generator/SKILL.md)<br />[copilot-instructions-blueprint-generator](../skills/copilot-instructions-blueprint-generator/SKILL.md)、[create-architectural-decision-record](../skills/create-architectural-decision-record/SKILL.md)、[create-github-action-workflow-specification](../skills/create-github-action-workflow-specification/SKILL.md)、[create-github-issue-feature-from-specification](../skills/create-github-issue-feature-from-specification/SKILL.md)、[create-github-issues-feature-from-implementation-plan](../skills/create-github-issues-feature-from-implementation-plan/SKILL.md)、[create-github-issues-for-unmet-specification-requirements](../skills/create-github-issues-for-unmet-specification-requirements/SKILL.md)、[create-github-pull-request-from-specification](../skills/create-github-pull-request-from-specification/SKILL.md)、[create-implementation-plan](../skills/create-implementation-plan/SKILL.md)<br />[create-specification](../skills/create-specification/SKILL.md)、[create-technical-spike](../skills/create-technical-spike/SKILL.md)、[devops-rollout-plan](../skills/devops-rollout-plan/SKILL.md)、[folder-structure-blueprint-generator](../skills/folder-structure-blueprint-generator/SKILL.md)、[gen-specs-as-issues](../skills/gen-specs-as-issues/SKILL.md)、[prd](../skills/prd/SKILL.md)、[project-workflow-analysis-blueprint-generator](../skills/project-workflow-analysis-blueprint-generator/SKILL.md)、[readme-blueprint-generator](../skills/readme-blueprint-generator/SKILL.md)<br />[technology-stack-blueprint-generator](../skills/technology-stack-blueprint-generator/SKILL.md)、[update-implementation-plan](../skills/update-implementation-plan/SKILL.md)、[update-specification](../skills/update-specification/SKILL.md)
+
+#### 2. 文档与知识沉淀（21）
+
+用于编写 README、教程、会议纪要、知识文档和说明材料。
+
+- [add-educational-comments](../skills/add-educational-comments/SKILL.md)、[comment-code-generate-a-tutorial](../skills/comment-code-generate-a-tutorial/SKILL.md)、[convert-plaintext-to-md](../skills/convert-plaintext-to-md/SKILL.md)、[create-agentsmd](../skills/create-agentsmd/SKILL.md)、[create-llms](../skills/create-llms/SKILL.md)、[create-readme](../skills/create-readme/SKILL.md)、[create-tldr-page](../skills/create-tldr-page/SKILL.md)、[csharp-docs](../skills/csharp-docs/SKILL.md)<br />[documentation-writer](../skills/documentation-writer/SKILL.md)、[generate-custom-instructions-from-codebase](../skills/generate-custom-instructions-from-codebase/SKILL.md)、[java-docs](../skills/java-docs/SKILL.md)、[markdown-to-html](../skills/markdown-to-html/SKILL.md)、[mentoring-juniors](../skills/mentoring-juniors/SKILL.md)、[microsoft-docs](../skills/microsoft-docs/SKILL.md)、[mkdocs-translations](../skills/mkdocs-translations/SKILL.md)、[oo-component-documentation](../skills/oo-component-documentation/SKILL.md)<br />[repo-story-time](../skills/repo-story-time/SKILL.md)、[tldr-prompt](../skills/tldr-prompt/SKILL.md)、[update-llms](../skills/update-llms/SKILL.md)、[update-markdown-file-index](../skills/update-markdown-file-index/SKILL.md)、[write-coding-standards-from-file](../skills/write-coding-standards-from-file/SKILL.md)
+
+#### 3. 上下文、记忆与协作交接（8）
+
+用于整理任务上下文、沉淀经验记忆，并支持后续会话或协作者接续工作。
+
+- [context-map](../skills/context-map/SKILL.md)、[copilot-spaces](../skills/copilot-spaces/SKILL.md)、[first-ask](../skills/first-ask/SKILL.md)、[meeting-minutes](../skills/meeting-minutes/SKILL.md)、[memory-merger](../skills/memory-merger/SKILL.md)、[remember](../skills/remember/SKILL.md)、[remember-interactive-programming](../skills/remember-interactive-programming/SKILL.md)、[what-context-needed](../skills/what-context-needed/SKILL.md)
+
+#### 4. 代码生成与脚手架（23）
+
+用于生成项目骨架、接口代码、MCP 服务、代理或其他可直接落地的模板。
+
+- [automate-this](../skills/automate-this/SKILL.md)、[create-spring-boot-java-project](../skills/create-spring-boot-java-project/SKILL.md)、[create-spring-boot-kotlin-project](../skills/create-spring-boot-kotlin-project/SKILL.md)、[csharp-mcp-server-generator](../skills/csharp-mcp-server-generator/SKILL.md)、[github-copilot-starter](../skills/github-copilot-starter/SKILL.md)、[go-mcp-server-generator](../skills/go-mcp-server-generator/SKILL.md)、[java-mcp-server-generator](../skills/java-mcp-server-generator/SKILL.md)、[kotlin-mcp-server-generator](../skills/kotlin-mcp-server-generator/SKILL.md)<br />[make-skill-template](../skills/make-skill-template/SKILL.md)、[mcp-create-adaptive-cards](../skills/mcp-create-adaptive-cards/SKILL.md)、[mcp-create-declarative-agent](../skills/mcp-create-declarative-agent/SKILL.md)、[microsoft-skill-creator](../skills/microsoft-skill-creator/SKILL.md)、[openapi-to-application-code](../skills/openapi-to-application-code/SKILL.md)、[php-mcp-server-generator](../skills/php-mcp-server-generator/SKILL.md)、[power-apps-code-app-scaffold](../skills/power-apps-code-app-scaffold/SKILL.md)、[python-mcp-server-generator](../skills/python-mcp-server-generator/SKILL.md)<br />[ruby-mcp-server-generator](../skills/ruby-mcp-server-generator/SKILL.md)、[rust-mcp-server-generator](../skills/rust-mcp-server-generator/SKILL.md)、[swift-mcp-server-generator](../skills/swift-mcp-server-generator/SKILL.md)、[typescript-mcp-server-generator](../skills/typescript-mcp-server-generator/SKILL.md)、[typespec-api-operations](../skills/typespec-api-operations/SKILL.md)、[typespec-create-agent](../skills/typespec-create-agent/SKILL.md)、[typespec-create-api-plugin](../skills/typespec-create-api-plugin/SKILL.md)
+
+#### 5. 代码审查、重构与质量（20）
+
+用于代码审查、重构、设计模式检查和质量改进。
+
+- [agentic-eval](../skills/agentic-eval/SKILL.md)、[ai-prompt-engineering-safety-review](../skills/ai-prompt-engineering-safety-review/SKILL.md)、[apple-appstore-reviewer](../skills/apple-appstore-reviewer/SKILL.md)、[cloud-design-patterns](../skills/cloud-design-patterns/SKILL.md)、[conventional-commit](../skills/conventional-commit/SKILL.md)、[dotnet-best-practices](../skills/dotnet-best-practices/SKILL.md)、[dotnet-design-pattern-review](../skills/dotnet-design-pattern-review/SKILL.md)、[doublecheck](../skills/doublecheck/SKILL.md)<br />[eval-driven-dev](../skills/eval-driven-dev/SKILL.md)、[java-refactoring-extract-method](../skills/java-refactoring-extract-method/SKILL.md)、[java-refactoring-remove-parameter](../skills/java-refactoring-remove-parameter/SKILL.md)、[postgresql-code-review](../skills/postgresql-code-review/SKILL.md)、[power-bi-model-design-review](../skills/power-bi-model-design-review/SKILL.md)、[refactor](../skills/refactor/SKILL.md)、[refactor-method-complexity-reduce](../skills/refactor-method-complexity-reduce/SKILL.md)、[refactor-plan](../skills/refactor-plan/SKILL.md)<br />[review-and-refactor](../skills/review-and-refactor/SKILL.md)、[reviewing-oracle-to-postgres-migration](../skills/reviewing-oracle-to-postgres-migration/SKILL.md)、[sql-code-review](../skills/sql-code-review/SKILL.md)、[web-design-reviewer](../skills/web-design-reviewer/SKILL.md)
+
+#### 6. 测试与调试（14）
+
+用于测试生成、测试规划、覆盖率提升、调试与故障定位。
+
+- [csharp-mstest](../skills/csharp-mstest/SKILL.md)、[csharp-nunit](../skills/csharp-nunit/SKILL.md)、[csharp-tunit](../skills/csharp-tunit/SKILL.md)、[csharp-xunit](../skills/csharp-xunit/SKILL.md)、[flowstudio-power-automate-debug](../skills/flowstudio-power-automate-debug/SKILL.md)、[java-junit](../skills/java-junit/SKILL.md)、[javascript-typescript-jest](../skills/javascript-typescript-jest/SKILL.md)、[playwright-automation-fill-in-form](../skills/playwright-automation-fill-in-form/SKILL.md)<br />[playwright-explore-website](../skills/playwright-explore-website/SKILL.md)、[playwright-generate-test](../skills/playwright-generate-test/SKILL.md)、[polyglot-test-agent](../skills/polyglot-test-agent/SKILL.md)、[pytest-coverage](../skills/pytest-coverage/SKILL.md)、[scoutqa-test](../skills/scoutqa-test/SKILL.md)、[webapp-testing](../skills/webapp-testing/SKILL.md)
+
+#### 7. AI / Copilot / MCP / 提示工程（25）
+
+用于 Copilot 能力扩展、代理治理、提示工程、MCP 生态与模型选型。
+
+- [agent-governance](../skills/agent-governance/SKILL.md)、[boost-prompt](../skills/boost-prompt/SKILL.md)、[copilot-cli-quickstart](../skills/copilot-cli-quickstart/SKILL.md)、[copilot-sdk](../skills/copilot-sdk/SKILL.md)、[copilot-usage-metrics](../skills/copilot-usage-metrics/SKILL.md)、[declarative-agents](../skills/declarative-agents/SKILL.md)、[entra-agent-user](../skills/entra-agent-user/SKILL.md)、[finalize-agent-prompt](../skills/finalize-agent-prompt/SKILL.md)<br />[mcp-cli](../skills/mcp-cli/SKILL.md)、[mcp-copilot-studio-server-generator](../skills/mcp-copilot-studio-server-generator/SKILL.md)、[mcp-deploy-manage-agents](../skills/mcp-deploy-manage-agents/SKILL.md)、[microsoft-agent-framework](../skills/microsoft-agent-framework/SKILL.md)、[model-recommendation](../skills/model-recommendation/SKILL.md)、[nano-banana-pro-openrouter](../skills/nano-banana-pro-openrouter/SKILL.md)、[noob-mode](../skills/noob-mode/SKILL.md)、[prompt-builder](../skills/prompt-builder/SKILL.md)<br />[quasi-coder](../skills/quasi-coder/SKILL.md)、[semantic-kernel](../skills/semantic-kernel/SKILL.md)、[structured-autonomy-generate](../skills/structured-autonomy-generate/SKILL.md)、[structured-autonomy-implement](../skills/structured-autonomy-implement/SKILL.md)、[structured-autonomy-plan](../skills/structured-autonomy-plan/SKILL.md)、[suggest-awesome-github-copilot-agents](../skills/suggest-awesome-github-copilot-agents/SKILL.md)、[suggest-awesome-github-copilot-instructions](../skills/suggest-awesome-github-copilot-instructions/SKILL.md)、[suggest-awesome-github-copilot-skills](../skills/suggest-awesome-github-copilot-skills/SKILL.md)<br />[workiq-copilot](../skills/workiq-copilot/SKILL.md)
+
+#### 8. 云平台与基础设施（20）
+
+用于云资源、基础设施代码、部署验证、容器化和平台运维准备。
+
+- [appinsights-instrumentation](../skills/appinsights-instrumentation/SKILL.md)、[aspire](../skills/aspire/SKILL.md)、[az-cost-optimize](../skills/az-cost-optimize/SKILL.md)、[azure-deployment-preflight](../skills/azure-deployment-preflight/SKILL.md)、[azure-devops-cli](../skills/azure-devops-cli/SKILL.md)、[azure-pricing](../skills/azure-pricing/SKILL.md)、[azure-resource-health-diagnose](../skills/azure-resource-health-diagnose/SKILL.md)、[azure-resource-visualizer](../skills/azure-resource-visualizer/SKILL.md)<br />[azure-role-selector](../skills/azure-role-selector/SKILL.md)、[azure-static-web-apps](../skills/azure-static-web-apps/SKILL.md)、[containerize-aspnet-framework](../skills/containerize-aspnet-framework/SKILL.md)、[containerize-aspnetcore](../skills/containerize-aspnetcore/SKILL.md)、[flowstudio-power-automate-build](../skills/flowstudio-power-automate-build/SKILL.md)、[flowstudio-power-automate-mcp](../skills/flowstudio-power-automate-mcp/SKILL.md)、[import-infrastructure-as-code](../skills/import-infrastructure-as-code/SKILL.md)、[multi-stage-dockerfile](../skills/multi-stage-dockerfile/SKILL.md)<br />[power-platform-mcp-connector-suite](../skills/power-platform-mcp-connector-suite/SKILL.md)、[publish-to-pages](../skills/publish-to-pages/SKILL.md)、[terraform-azurerm-set-diff-analyzer](../skills/terraform-azurerm-set-diff-analyzer/SKILL.md)、[update-avm-modules-in-bicep](../skills/update-avm-modules-in-bicep/SKILL.md)
+
+#### 9. 数据库、数据与迁移（23）
+
+用于数据库优化、数据建模、分析场景和跨数据库迁移。
+
+- [bigquery-pipeline-audit](../skills/bigquery-pipeline-audit/SKILL.md)、[cosmosdb-datamodeling](../skills/cosmosdb-datamodeling/SKILL.md)、[creating-oracle-to-postgres-master-migration-plan](../skills/creating-oracle-to-postgres-master-migration-plan/SKILL.md)、[creating-oracle-to-postgres-migration-bug-report](../skills/creating-oracle-to-postgres-migration-bug-report/SKILL.md)、[creating-oracle-to-postgres-migration-integration-tests](../skills/creating-oracle-to-postgres-migration-integration-tests/SKILL.md)、[datanalysis-credit-risk](../skills/datanalysis-credit-risk/SKILL.md)、[dataverse-python-advanced-patterns](../skills/dataverse-python-advanced-patterns/SKILL.md)、[dataverse-python-production-code](../skills/dataverse-python-production-code/SKILL.md)<br />[dataverse-python-quickstart](../skills/dataverse-python-quickstart/SKILL.md)、[dataverse-python-usecase-builder](../skills/dataverse-python-usecase-builder/SKILL.md)、[ef-core](../skills/ef-core/SKILL.md)、[fabric-lakehouse](../skills/fabric-lakehouse/SKILL.md)、[migrating-oracle-to-postgres-stored-procedures](../skills/migrating-oracle-to-postgres-stored-procedures/SKILL.md)、[planning-oracle-to-postgres-migration-integration-testing](../skills/planning-oracle-to-postgres-migration-integration-testing/SKILL.md)、[postgresql-optimization](../skills/postgresql-optimization/SKILL.md)、[power-bi-dax-optimization](../skills/power-bi-dax-optimization/SKILL.md)<br />[power-bi-performance-troubleshooting](../skills/power-bi-performance-troubleshooting/SKILL.md)、[power-bi-report-design-consultation](../skills/power-bi-report-design-consultation/SKILL.md)、[powerbi-modeling](../skills/powerbi-modeling/SKILL.md)、[scaffolding-oracle-to-postgres-migration-test-project](../skills/scaffolding-oracle-to-postgres-migration-test-project/SKILL.md)、[shuffle-json-data](../skills/shuffle-json-data/SKILL.md)、[snowflake-semanticview](../skills/snowflake-semanticview/SKILL.md)、[sql-optimization](../skills/sql-optimization/SKILL.md)
+
+#### 10. 开发工具、CLI 与协作平台（25）
+
+用于 CLI、代码托管、问题协作、编辑器扩展和日常开发工具链。
+
+- [arch-linux-triage](../skills/arch-linux-triage/SKILL.md)、[centos-linux-triage](../skills/centos-linux-triage/SKILL.md)、[chrome-devtools](../skills/chrome-devtools/SKILL.md)、[cli-mastery](../skills/cli-mastery/SKILL.md)、[debian-linux-triage](../skills/debian-linux-triage/SKILL.md)、[editorconfig](../skills/editorconfig/SKILL.md)、[fedora-linux-triage](../skills/fedora-linux-triage/SKILL.md)、[gh-cli](../skills/gh-cli/SKILL.md)<br />[git-commit](../skills/git-commit/SKILL.md)、[git-flow-branch-creator](../skills/git-flow-branch-creator/SKILL.md)、[github-issues](../skills/github-issues/SKILL.md)、[issue-fields-migration](../skills/issue-fields-migration/SKILL.md)、[make-repo-contribution](../skills/make-repo-contribution/SKILL.md)、[microsoft-code-reference](../skills/microsoft-code-reference/SKILL.md)、[msstore-cli](../skills/msstore-cli/SKILL.md)、[my-issues](../skills/my-issues/SKILL.md)<br />[my-pull-requests](../skills/my-pull-requests/SKILL.md)、[nuget-manager](../skills/nuget-manager/SKILL.md)、[pdftk-server](../skills/pdftk-server/SKILL.md)、[sandbox-npm-install](../skills/sandbox-npm-install/SKILL.md)、[sponsor-finder](../skills/sponsor-finder/SKILL.md)、[vscode-ext-commands](../skills/vscode-ext-commands/SKILL.md)、[vscode-ext-localization](../skills/vscode-ext-localization/SKILL.md)、[winapp-cli](../skills/winapp-cli/SKILL.md)<br />[winmd-api-search](../skills/winmd-api-search/SKILL.md)
+
+#### 11. 编程语言与框架专题（13）
+
+面向特定语言、运行时或框架的开发实践与专项能力。
+
+- [aspnet-minimal-api-openapi](../skills/aspnet-minimal-api-openapi/SKILL.md)、[csharp-async](../skills/csharp-async/SKILL.md)、[dotnet-upgrade](../skills/dotnet-upgrade/SKILL.md)、[finnish-humanizer](../skills/finnish-humanizer/SKILL.md)、[fluentui-blazor](../skills/fluentui-blazor/SKILL.md)、[game-engine](../skills/game-engine/SKILL.md)、[java-add-graalvm-native-image-support](../skills/java-add-graalvm-native-image-support/SKILL.md)、[java-springboot](../skills/java-springboot/SKILL.md)<br />[kotlin-springboot](../skills/kotlin-springboot/SKILL.md)、[next-intl-add-language](../skills/next-intl-add-language/SKILL.md)、[unit-test-vue-pinia](../skills/unit-test-vue-pinia/SKILL.md)、[web-coder](../skills/web-coder/SKILL.md)、[winui3-migration-guide](../skills/winui3-migration-guide/SKILL.md)
+
+#### 12. 设计、可视化与多媒体（7）
+
+用于图表设计、界面审阅、视觉表达和媒体处理。
+
+- [excalidraw-diagram-generator](../skills/excalidraw-diagram-generator/SKILL.md)、[image-manipulation-image-magick](../skills/image-manipulation-image-magick/SKILL.md)、[legacy-circuit-mockups](../skills/legacy-circuit-mockups/SKILL.md)、[napkin](../skills/napkin/SKILL.md)、[penpot-uiux-design](../skills/penpot-uiux-design/SKILL.md)、[plantuml-ascii](../skills/plantuml-ascii/SKILL.md)、[transloadit-media-processing](../skills/transloadit-media-processing/SKILL.md)
+
+### 模型会话内容交接相关技能
+
+- **最推荐**：[remember](../skills/remember/SKILL.md)、[memory-merger](../skills/memory-merger/SKILL.md)
+  - `remember` 负责把阶段性经验沉淀成可复用的记忆指令。
+  - `memory-merger` 负责把成熟经验并入长期指令文件，适合跨会话延续。
+- **辅助交接**：[context-map](../skills/context-map/SKILL.md)、[copilot-spaces](../skills/copilot-spaces/SKILL.md)、[first-ask](../skills/first-ask/SKILL.md)、[meeting-minutes](../skills/meeting-minutes/SKILL.md)、[remember-interactive-programming](../skills/remember-interactive-programming/SKILL.md)、[what-context-needed](../skills/what-context-needed/SKILL.md)
+  - `context-map` 适合先输出任务相关文件地图，便于下一个模型快速接手。
+  - `what-context-needed` 适合先确认下一个模型还缺哪些上下文。
+  - `meeting-minutes` 和 `copilot-spaces` 更适合沉淀为可读摘要或共享知识库。
+  - `first-ask` 适合在新会话一开始先澄清需求、补齐背景。
+
+**结论**：仓库里已经有适合“模型会话内容交接”的技能，但它们更偏向于通过**结构化、可持久化的产物**来交接上下文，例如 memory instructions、instruction files、任务上下文图和会议纪要；目前没有专门用于完整传递原始聊天记录的单一技能。
+
 | Name | Description | Bundled Assets |
 | ---- | ----------- | -------------- |
 | [add-educational-comments](../skills/add-educational-comments/SKILL.md) | Add educational comments to the file specified, or prompt asking for file to comment if one is not provided. | None |
