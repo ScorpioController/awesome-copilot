@@ -268,6 +268,333 @@ function formatTableCell(text) {
   return s.trim();
 }
 
+const SKILL_CATEGORY_RULES = [
+  {
+    title: "规划与需求",
+    description: "用于需求拆解、方案规划、规格编写和实施路线设计。",
+    patterns: [
+      /breakdown-/,
+      /(^|-)prd($|-)/,
+      /specification/,
+      /implementation-plan/,
+      /technical-spike/,
+      /architectural-decision-record/,
+      /workflow-specification/,
+      /feature-from-specification/,
+      /feature-from-implementation-plan/,
+      /unmet-specification/,
+      /gen-specs-as-issues/,
+      /devops-rollout-plan/,
+      /blueprint-generator/,
+      /rollout-plan/,
+    ],
+  },
+  {
+    title: "文档与知识沉淀",
+    description: "用于编写 README、教程、会议纪要、知识文档和说明材料。",
+    patterns: [
+      /documentation/,
+      /readme/,
+      /llms/,
+      /tldr/,
+      /meeting-minutes/,
+      /repo-story-time/,
+      /comment-code-generate-a-tutorial/,
+      /convert-plaintext-to-md/,
+      /markdown-to-html/,
+      /mkdocs/,
+      /update-markdown-file-index/,
+      /add-educational-comments/,
+      /docs/,
+      /oo-component-documentation/,
+      /create-agentsmd/,
+      /write-coding-standards-from-file/,
+      /generate-custom-instructions-from-codebase/,
+      /mentoring-juniors/,
+    ],
+  },
+  {
+    title: "上下文、记忆与协作交接",
+    description: "用于整理任务上下文、沉淀经验记忆，并支持后续会话或协作者接续工作。",
+    patterns: [
+      /context-map/,
+      /remember/,
+      /memory-merger/,
+      /what-context-needed/,
+      /copilot-spaces/,
+      /first-ask/,
+    ],
+  },
+  {
+    title: "代码生成与脚手架",
+    description: "用于生成项目骨架、接口代码、MCP 服务、代理或其他可直接落地的模板。",
+    patterns: [
+      /create-spring-boot/,
+      /openapi-to-application/,
+      /mcp-server-generator/,
+      /typespec-create/,
+      /typespec-api-operations/,
+      /mcp-create/,
+      /power-apps-code-app-scaffold/,
+      /make-skill-template/,
+      /microsoft-skill-creator/,
+      /automate-this/,
+      /github-copilot-starter/,
+    ],
+  },
+  {
+    title: "代码审查、重构与质量",
+    description: "用于代码审查、重构、设计模式检查和质量改进。",
+    patterns: [
+      /refactor/,
+      /review/,
+      /doublecheck/,
+      /best-practices/,
+      /design-pattern-review/,
+      /code-review/,
+      /code-exemplars/,
+      /conventional-commit/,
+      /cloud-design-patterns/,
+      /agentic-eval/,
+      /eval-driven-dev/,
+    ],
+  },
+  {
+    title: "测试与调试",
+    description: "用于测试生成、测试规划、覆盖率提升、调试与故障定位。",
+    patterns: [
+      /playwright/,
+      /pytest/,
+      /junit/,
+      /mstest/,
+      /nunit/,
+      /tunit/,
+      /xunit/,
+      /jest/,
+      /webapp-testing/,
+      /scoutqa-test/,
+      /polyglot-test-agent/,
+      /breakdown-test/,
+      /debug/,
+    ],
+  },
+  {
+    title: "AI / Copilot / MCP / 提示工程",
+    description: "用于 Copilot 能力扩展、代理治理、提示工程、MCP 生态与模型选型。",
+    patterns: [
+      /agent-governance/,
+      /ai-prompt/,
+      /boost-prompt/,
+      /prompt-builder/,
+      /finalize-agent-prompt/,
+      /semantic-kernel/,
+      /copilot-/,
+      /declarative-agents/,
+      /entra-agent-user/,
+      /mcp-cli/,
+      /mcp-deploy-manage-agents/,
+      /microsoft-agent-framework/,
+      /workiq-copilot/,
+      /structured-autonomy/,
+      /suggest-awesome-github-copilot/,
+      /model-recommendation/,
+      /noob-mode/,
+      /quasi-coder/,
+      /tldr-prompt/,
+      /nano-banana-pro-openrouter/,
+    ],
+  },
+  {
+    title: "云平台与基础设施",
+    description: "用于云资源、基础设施代码、部署验证、容器化和平台运维准备。",
+    patterns: [
+      /^az-/,
+      /^azure-/,
+      /appinsights/,
+      /terraform/,
+      /containerize/,
+      /multi-stage-dockerfile/,
+      /import-infrastructure-as-code/,
+      /publish-to-pages/,
+      /update-avm-modules-in-bicep/,
+      /aspire/,
+      /power-platform-mcp-connector-suite/,
+      /flowstudio-power-automate/,
+      /azure-static-web-apps/,
+    ],
+  },
+  {
+    title: "数据库、数据与迁移",
+    description: "用于数据库优化、数据建模、分析场景和跨数据库迁移。",
+    patterns: [
+      /sql/,
+      /postgres/,
+      /oracle-to-postgres/,
+      /cosmosdb/,
+      /bigquery/,
+      /fabric-lakehouse/,
+      /power-bi/,
+      /powerbi/,
+      /snowflake/,
+      /dataverse/,
+      /datanalysis/,
+      /shuffle-json-data/,
+      /ef-core/,
+    ],
+  },
+  {
+    title: "开发工具、CLI 与协作平台",
+    description: "用于 CLI、代码托管、问题协作、编辑器扩展和日常开发工具链。",
+    patterns: [
+      /cli/,
+      /git-/,
+      /github-issues/,
+      /my-issues/,
+      /my-pull-requests/,
+      /sponsor-finder/,
+      /make-repo-contribution/,
+      /issue-fields-migration/,
+      /winapp-cli/,
+      /msstore-cli/,
+      /chrome-devtools/,
+      /vscode-ext/,
+      /editorconfig/,
+      /nuget-manager/,
+      /microsoft-code-reference/,
+      /winmd-api-search/,
+      /pdftk-server/,
+      /sandbox-npm-install/,
+      /linux-triage/,
+    ],
+  },
+  {
+    title: "编程语言与框架专题",
+    description: "面向特定语言、运行时或框架的开发实践与专项能力。",
+    patterns: [
+      /csharp-/,
+      /java-/,
+      /kotlin-/,
+      /go-/,
+      /php-/,
+      /ruby-/,
+      /rust-/,
+      /swift-/,
+      /typescript-/,
+      /python-/,
+      /aspnet-/,
+      /fluentui-blazor/,
+      /next-intl-add-language/,
+      /web-coder/,
+      /game-engine/,
+      /finnish-humanizer/,
+      /winui3-migration-guide/,
+      /unit-test-vue-pinia/,
+      /dotnet-upgrade/,
+    ],
+  },
+  {
+    title: "设计、可视化与多媒体",
+    description: "用于图表设计、界面审阅、视觉表达和媒体处理。",
+    patterns: [
+      /excalidraw/,
+      /penpot/,
+      /napkin/,
+      /plantuml/,
+      /image-manipulation/,
+      /transloadit/,
+      /legacy-circuit-mockups/,
+      /web-design-reviewer/,
+    ],
+  },
+];
+
+function groupSkillsByCategory(skillEntries) {
+  const categories = SKILL_CATEGORY_RULES.map((category) => ({
+    ...category,
+    skills: [],
+  }));
+
+  for (const skill of skillEntries) {
+    const matchingCategory = categories.find((category) =>
+      category.patterns.some((pattern) => pattern.test(skill.folder))
+    );
+
+    if (matchingCategory) {
+      matchingCategory.skills.push(skill);
+      continue;
+    }
+
+    const fallbackCategory = categories.find(
+      (category) => category.title === "开发工具、CLI 与协作平台"
+    );
+    fallbackCategory.skills.push(skill);
+  }
+
+  return categories;
+}
+
+function formatSkillLinks(skills) {
+  const links = skills.map(
+    (skill) => `[${skill.name}](../skills/${skill.folder}/SKILL.md)`
+  );
+  const chunks = [];
+
+  for (let i = 0; i < links.length; i += 8) {
+    chunks.push(links.slice(i, i + 8).join("、"));
+  }
+
+  return chunks.join("<br />");
+}
+
+function generateChineseSkillCatalog(skillEntries) {
+  const categories = groupSkillsByCategory(skillEntries);
+  const handoffSkills = {
+    bestFit: ["remember", "memory-merger"],
+    supporting: [
+      "context-map",
+      "what-context-needed",
+      "meeting-minutes",
+      "copilot-spaces",
+      "first-ask",
+    ],
+  };
+
+  let content = `### 中文分类技能清单
+
+以下按用途对全部 **${skillEntries.length}** 个技能进行分类，技能名称保留仓库中的原始英文目录名，便于直接在 \`skills/\` 目录中定位。
+
+`;
+
+  categories.forEach((category, index) => {
+    content += `#### ${index + 1}. ${category.title}（${category.skills.length}）\n\n`;
+    content += `${category.description}\n\n`;
+    content += `- ${formatSkillLinks(category.skills)}\n\n`;
+  });
+
+  const bestFitLinks = handoffSkills.bestFit
+    .map((name) => `[${name}](../skills/${name}/SKILL.md)`)
+    .join("、");
+  const supportingLinks = handoffSkills.supporting
+    .map((name) => `[${name}](../skills/${name}/SKILL.md)`)
+    .join("、");
+
+  content += `### 模型会话内容交接相关技能
+
+- **最推荐**：${bestFitLinks}
+  - \`remember\` 负责把阶段性经验沉淀成可复用的记忆指令。
+  - \`memory-merger\` 负责把成熟经验并入长期指令文件，适合跨会话延续。
+- **辅助交接**：${supportingLinks}
+  - \`context-map\` 适合先输出任务相关文件地图，便于下一个模型快速接手。
+  - \`what-context-needed\` 适合先确认下一个模型还缺哪些上下文。
+  - \`meeting-minutes\` 和 \`copilot-spaces\` 更适合沉淀为可读摘要或共享知识库。
+  - \`first-ask\` 适合在新会话一开始先澄清需求、补齐背景。
+
+**结论**：仓库里已经有适合“模型会话内容交接”的技能，但它们更偏向于通过**结构化、可持久化的产物**来交接上下文，例如 memory instructions、instruction files、任务上下文图和会议纪要；目前没有专门用于完整传递原始聊天记录的单一技能。
+`;
+
+  return content;
+}
+
 function makeBadges(link, type) {
   const aka = AKA_INSTALL_URLS[type] || AKA_INSTALL_URLS.instructions;
 
@@ -631,7 +958,9 @@ function generateSkillsSection(skillsDir) {
     )} | ${assetsList} |\n`;
   }
 
-  return `${TEMPLATES.skillsSection}\n${TEMPLATES.skillsUsage}\n\n${content}`;
+  const chineseCatalog = generateChineseSkillCatalog(skillEntries);
+
+  return `${TEMPLATES.skillsSection}\n${TEMPLATES.skillsUsage}\n\n${chineseCatalog}\n${content}`;
 }
 
 /**
